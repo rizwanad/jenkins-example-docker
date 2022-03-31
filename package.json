@@ -1,0 +1,22 @@
+{
+  "name": "jenkins-example-docker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darinpope/jenkins-example-docker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darinpope/jenkins-example-docker/issues"
+  },
+  "homepage": "https://github.com/darinpope/jenkins-example-docker#readme",
+  "dependencies": {
+    "color": "^4.2.1"
+  }
+}
