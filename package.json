@@ -22,6 +22,7 @@
     "memoize-one": "^4.0.0",
     "mini-signals": "^1.2.0",
     "moment": "^2.29.1",
+    "node-sass": "^7.0.1",
     "normalizr": "^3.4.0",
     "object-path-immutable": "^1.0.2",
     "prettier": "2.3.0",
