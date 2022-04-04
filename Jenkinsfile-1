@@ -1,13 +1,35 @@
+// We have to cache "Cypress binary => ~/.cache/Cypress" and npm cache
+// Because these two are very long files.
+
+// And restore before running test.
+
 pipeline {
-  agent {
-    docker { image 'node12.18.3-chrome89-ff86' }
-  }
-  stages {
-    stage('Test') {
-      steps {
-        sh 'node --version'
-        sh 'cypress verify'
-      }
+    options {
+        ansiColor('xterm')
     }
-  }
+    agent {
+        docker { 
+            image 'cypress/browsers:node12.18.3-chrome89-ff86'
+            args '-u root:root'
+        }
+    }
+    stages {
+        stage('Install') {
+            steps {
+                cache(maxCacheSize: 600, caches: [
+                    [$class: 'ArbitraryFileCache', includes: '**/*', path: '${HOME}/.cache/Cypress'],
+                ]) {
+                    sh 'yarn install'
+                    sh 'yarn cypress install'
+                    sh 'yarn cypress cache list --size'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'yarn cy:verify'
+                sh 'yarn cy:run:browser'
+            }
+        }
+    }
 }
