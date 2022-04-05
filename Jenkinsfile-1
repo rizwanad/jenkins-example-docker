@@ -15,15 +15,9 @@ pipeline {
     }
     stages {
         stage('Install') {
-            steps {
-                cache(maxCacheSize: 600, caches: [
-                    [$class: 'ArbitraryFileCache', includes: '**/*', path: '${HOME}/.cache/Cypress'],
-                ]) {
-                    sh 'yarn install'
-                    sh 'yarn cypress install'
-                    sh 'yarn cypress cache list --size'
-                }
-            }
+            sh 'yarn install'
+            sh 'yarn cypress install'
+            sh 'yarn cypress cache list --size'
         }
         stage('Test') {
             steps {
